@@ -18,10 +18,10 @@ Each line in the dataset contains a series of 15 previous interactions which are
 The data source is customer interactions, each code represent an event, true nature of interactions is not described, though:
 * I gathered such data and defined the data model what would need to look for, represented by columns as below, all features are numeric, as explained interactions are transformed into numerical codes already.
 * id is a unique identifier per row which bundles interactions together within the row
-* prev_action_15 
+* `prev_action_15` 
  through
-* prev_action_1 columns
-    * they contain previous interaction codes, from oldest to newest action code: prev_action_15 being oldest and prev_action_1 being most recent in the data model representation
+* `prev_action_1` columns
+    * they contain previous interaction codes, from oldest to newest action code: `prev_action_15` being oldest and `prev_action_1` being most recent in the data model representation
     * If there are not enough data points in client interaction history, 0 will be placed in these previous action columns. Please note, semantically, zeros will start appearing from prev_action_15 (from oldest to newest). 0 cannot be on prev_action_1 which means no entry over 30 days for this client!
 * action is the target column
 * Sample data below:
