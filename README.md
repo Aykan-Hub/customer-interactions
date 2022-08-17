@@ -130,7 +130,15 @@ However, a multicollinearity analysis by Variance Inflation Factor (VIF) shows n
 
 ------------
 # Initial Model Results
-Results captured on the second dataset which has 15,000 records.
+Results captured on the second dataset which has 15,000 records to predict whether it is `55` or not. I am focusing on minimizing mislabeling `negative experience` therefore I am evaluating models per `accuracy` and their `precision` because the cost of `false positive` is high.
+
+The model results are shown in the following table from best to worst performer:
+
+|Model |Accuracy|Precision|
+|-------|------|-------|
+|Decision Tree|0.90|0.90|
+|k-Nearest Neighbors|0.87|0.86|
+|Logistic Regression|0.76|0.75|
 
 ## Decision Tree
    GridSearchCV came out with `accuracy: {'criterion': 'entropy', 'max_depth': 18, 'min_samples_leaf': 1, 'min_samples_split': 3, 'random_state': 93}` on the first dataset and `roc_auc: {'criterion': 'gini', 'max_depth': 7, 'min_samples_leaf': 3, 'min_samples_split': 2, 'random_state': 93}` on the second dataset which has the lowest misclassifcation ratio of all. However, the hyperparameters on the second dataset caused more `false positives`. Running a further analysis by `{‘criterion': 'entropy', 'max_depth': 18, 'min_samples_leaf': 1, 'min_samples_split': 3, 'random_state': 93}` hyperparameters below:
@@ -156,7 +164,7 @@ Partial dependence plot:
 Partial dependence plot:
 ![](images/lgr_partial_dependence2.png)
 
-All partial dependence plots point to prev_action_1 and prev_action_2 play influential role in those models.
+All 3 `partial dependence` plots aggree that `prev_action_1` and `prev_action_2` play influential role the most in those models.
 
 
 ## Next Steps
@@ -164,4 +172,6 @@ Those models will highlight negative customer experiences, so, `false positive` 
 
 The `decision tree` model is outperforming other models and it is not sensitive to multicollinearity, I have not checked how sensitive to multicollinearity other models are, I will remove multicollinearity in the datasets and try those models as next steps. Decision tree is slow to train but k-Nearest Neighbors model is slow on execution, Logistic Regression model is the fastest but worst performer in this round.
 
-Another uncertainity in datasets may affect model results when the same set of `features overlapping` with different classes, I will implement this check in the exploratory data analysis in the next phase.
+Another uncertainity in datasets may affect model results when the same set of `features` overlapping with different classes, I will implement this check in the exploratory data analysis in the next phase.
+
+The models are binomial currently, in the next phase I will try out multinomial models to predict negative experiences.
