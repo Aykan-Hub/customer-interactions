@@ -74,7 +74,7 @@ There are 2 datasets to predict 2 different scenarios as describe above:
 The data format is the same for both.
 
 ## Exploratory Data Analysis on Dataset #1
-There are no null values in either datasets and both datasets are balanced, there are equal number of positive and negative data elements in the target column. The datasets are clean, no further processing is necessary besides the target column.
+There are no null values in either datasets and both datasets are balanced, there are equal number of positive and negative data elements in the target column. The datasets are clean, no further processing is necessary besides the target column, 4048 records, target value is `142`.
 
 The correlation matrix on the first dataset shows there are some correlated columns:
 
@@ -102,13 +102,13 @@ However, a multicollinearity analysis by Variance Inflation Factor (VIF) shows o
 
 
 ## Exploratory Data Analysis on Dataset #2
-There are no null values in either datasets and both datasets are balanced, there are equal number of positive and negative data elements in the target column. The datasets are clean, no further processing is necessary besides the target column.
+There are no null values in either datasets and both datasets are balanced, there are equal number of positive and negative data elements in the target column. The datasets are clean, no further processing is necessary besides the target column, 15,000 records, target value is `55`.
 
 The correlation matrix on the first dataset shows there are some correlated columns:
 
 ![images/dataset2.png](images/dataset2.png)
 
-However, a multicollinearity analysis by Variance Inflation Factor (VIF) shows no cencern on any features:
+However, a multicollinearity analysis by Variance Inflation Factor (VIF) shows no concern on any features:
 
 |Feature|	VIF|
 |-------|------|
@@ -169,9 +169,10 @@ All 3 `partial dependence` plots aggree that `prev_action_1` and `prev_action_2`
 
 ## Next Steps
 Those models will highlight negative customer experiences, so, `false positive` rate should be low but skipping detection of negative experience (`false negative`) is also important considering proactive outreach to customers unnecessarily not so desired on false positive cases. So, the model should minimize misclassifications therefore model `accuracy` should be high as well as the `precision`, anyway, ideally both should be high as visualized below:
+
 ![](images/precision-accuracy.jpeg)
 
-The `decision tree` model is outperforming other models perhaps as it is not sensitive to multicollinearity, I have not checked how sensitive to multicollinearity other models are, I will remove multicollinearity in the datasets and try those models as next steps. Decision tree is slow to train but k-Nearest Neighbors model is slow on execution, Logistic Regression model is the fastest but worst performer in this round. Although, none of the model execution time was a concern given the dataset was 15,000 records.
+The `Decision Tree` model is outperforming other models perhaps as it is not sensitive to multicollinearity, I have not checked how sensitive to multicollinearity other models are, I will remove multicollinearity in the datasets and try those models as next steps. Decision tree is slow to train but k-Nearest Neighbors model is slow on execution, Logistic Regression model is the fastest but worst performer in this round. Although, none of the model execution time was a concern given the dataset was 15,000 records.
 
 Another uncertainity in the datasets may affect model results when the same set of `features` overlapping with opposite class, I will implement this check in the exploratory data analysis in the next phase.
 
